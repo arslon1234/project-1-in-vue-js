@@ -85,7 +85,6 @@ const Changebg3 = ref(false);
 const Changebg4 = ref(false);
 const selection = ref("12");
 const items = ref([]);
-const TotalPage = ref(0);
 const params = ref({
   page: 1,
   per_page: 12,
@@ -141,8 +140,6 @@ const getItem = async () => {
       },
     });
     items.value = data;
-    console.log(items.value);
-    TotalPage.value = Math.ceil(items.value.length / selection.value);
     params.value.last_page = links.last_page;
   } catch (e) {
     console.log(e);
