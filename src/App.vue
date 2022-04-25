@@ -51,33 +51,14 @@
           </div>
         </div>
         <div class="footer">
-          <!-- <div class="pagination">
-            <i class="pagination_icon fa-solid fa-angle-left"></i>
-            <div class="page_num">
-              <span
-                class="per_number"
-                >{{ pageNum }}</span
-              >
-            </div>
-            <i class="pagination_icon fa-solid fa-angle-right"></i>
-          </div> -->
           <v-pagination
             v-model="params.page"
             :pages="params.last_page"
             :range-size="1"
-            active-color="#DCEDFF"
+            active-color="#00d06c"
             :container-class="pagination"
             @update:modelValue="getItem"
           />
-          <!-- <paginate
-            :page-count="params.last_page"
-            :page-range="1"
-            :margin-pages="2"
-            :prev-text="'Prev'"
-            :next-text="'Next'"
-            
-          >
-          </paginate> -->
           <div class="selection">
             <select v-model="selection" @change="SelectItem">
               <option value="3">3</option>
@@ -92,10 +73,8 @@
   </div>
 </template>
 <script setup>
-/* ======= IMPORT ============= */
 import $http from "./plugins/axios";
 import { debounce } from "./utils/functions";
-import Paginate from "vuejs-paginate-next";
 import VPagination from "@hennge/vue3-pagination";
 import "@hennge/vue3-pagination/dist/vue3-pagination.css";
 import { RouterLink, RouterView } from "vue-router";
@@ -171,6 +150,7 @@ const getItem = async () => {
 };
 getItem();
 </script>
+
 <style lang="scss">
 * {
   margin: 0;
@@ -318,34 +298,6 @@ getItem();
     }
   }
   .footer {
-    /* .pagination {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .page_num {
-        .per_number {
-          margin: 0px 15px;
-          padding: 5px 12px;
-        }
-        :hover {
-          background-color: #00d06c;
-          color: #fff;
-          border-radius: 5px;
-          cursor: pointer;
-        }
-      }
-      .pagination_icon {
-        font-size: 20px;
-        cursor: pointer;
-      }
-      :hover {
-        color: #00d06c;
-      }
-    } */
-    .page-item {
-      width: 100px;
-      display: none;
-    }
     .selection {
       width: 130px;
       height: 30px;
