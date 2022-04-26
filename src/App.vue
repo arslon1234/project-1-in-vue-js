@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div v-if="items.length === 0" class="loading">
+    <Loading />
+  </div>
+  <div v-else-if="items.length">
     <div class="mt-4 wrapper">
       <div class="head">
         <nav>
@@ -56,7 +59,6 @@
             :pages="params.last_page"
             :range-size="1"
             active-color="#00d06c"
-            :container-class="pagination"
             @update:modelValue="getItem"
           />
           <div class="selection">
@@ -77,6 +79,7 @@ import $http from "./plugins/axios";
 import { debounce } from "./utils/functions";
 import VPagination from "@hennge/vue3-pagination";
 import "@hennge/vue3-pagination/dist/vue3-pagination.css";
+import Loading from "./components/Loading.vue";
 import { RouterLink, RouterView } from "vue-router";
 import { ref } from "vue";
 const Changebg1 = ref(true);
@@ -153,6 +156,12 @@ getItem();
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 .wrapper {
   display: flex;
