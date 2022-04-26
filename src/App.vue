@@ -1,8 +1,6 @@
 <template>
-  <div v-if="items.length === 0" class="loading">
-    <Loading />
-  </div>
-  <div v-else-if="items.length">
+  
+  <div>
     <div class="mt-4 wrapper">
       <div class="head">
         <nav>
@@ -45,7 +43,7 @@
           <div class="all_img">
             <img :src="item.image_url" alt="img" />
           </div>
-          <span class="sole">20.01.2021</span>
+          <span class="sole">{{item.create_at}}</span>
           <div class="item_title">
             <span>{{ item.title }}</span>
           </div>
@@ -88,6 +86,7 @@ const Changebg3 = ref(false);
 const Changebg4 = ref(false);
 const selection = ref("12");
 const items = ref([]);
+console.log(items?.create_at, "items")
 const params = ref({
   page: 1,
   per_page: 12,
@@ -143,6 +142,7 @@ const getItem = async () => {
       },
     });
     items.value = data;
+    console.log(items.value)
     params.value.last_page = links.last_page;
   } catch (e) {
     console.log(e);
@@ -172,6 +172,7 @@ getItem();
     width: 90vw;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-left: 5vw;
     nav {
